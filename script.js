@@ -72,16 +72,16 @@ const runComparison = () => {
   leftSide.forEach((leftStatus, index) => {
     const rightStatus = rightSide[index];
     console.log(leftStatus, rightStatus);
-    // const leftSideValue = leftStatus.dataset.value;
-    // const rightSideValue = rightStatus.dataset.value;
-    // console.log(leftSideValue, rightSideValue);
-    // if (rightSideValue > leftSideValue) {
-    //   leftSide.classList.remove("is-primary");
-    //   leftSide.classList.add("is-warning");
-    // } else {
-    //   rightSide.classList.remove("is-primary");
-    //   rightSide.classList.add("is-warning");
-    // }
+    const leftSideValue = leftStatus.dataset.value;
+    const rightSideValue = rightStatus.dataset.value;
+    console.log(leftSideValue, rightSideValue);
+    if (rightSideValue > leftSideValue) {
+      leftStatus.classList.remove("is-primary");
+      leftStatus.classList.add("is-danger");
+    } else {
+      rightStatus.classList.remove("is-primary");
+      rightStatus.classList.add("is-danger");
+    }
   });
 };
 
@@ -90,7 +90,7 @@ const movieTemplate = (movieDetail) => {
     movieDetail.BoxOffice.replace(/\$/g, "").replace(/,/g, "")
   );
   const metascore = parseInt(movieDetail.Metascore);
-  const imdbrating = parseInt(movieDetail.imdbRating);
+  const imdbrating = parseFloat(movieDetail.imdbRating);
   const imdbvotes = parseInt(movieDetail.imdbVotes.replace(/,/g, ""));
   const awards = movieDetail.Awards.split(" ").reduce((prev, word) => {
     const value = parseInt(word);
